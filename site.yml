@@ -1,0 +1,12 @@
+---
+- hosts: all
+  gather_facts: false
+  pre_tasks:
+    - name: Gather facts for the all servers
+      setup:
+        filter: ansible_distribution*
+  roles:
+    - { role: update_repo, repo_state: 'present' }
+    - { role: update_rpms }
+    - { role:  update_repo, repo_state: 'absent' }
+

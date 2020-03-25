@@ -1,0 +1,5 @@
+---
+# defaults file for update_rpms
+force_rpm_install: no
+rpm_package:
+  - '*'

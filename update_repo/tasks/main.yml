@@ -1,0 +1,16 @@
+---
+# tasks file for update_repo
+- name: Ensure repo file is {{ repo_state }}
+  yum_repository:
+    file: "{{ repo_file }}"
+    name: "{{ repo_name }}"
+    description: "{{ repo_description }}"
+    baseurl: "{{ yum_baseurl }}"
+    enabled: yes
+    gpgcheck: no
+    state: "{{ repo_state }}"
+
+- name: Ensure repo meatadata is updated
+  yum:
+    update_cache: yes
+

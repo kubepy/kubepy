@@ -1,0 +1,6 @@
+[test]
+localhost ansible_connection=local
+
+[test:vars]
+#rpm_package=['openssh-server','openssl']
+rpm_package='*'

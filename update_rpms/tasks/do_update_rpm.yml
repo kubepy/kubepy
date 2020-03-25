@@ -1,0 +1,17 @@
+---
+# tasks file for update_rpms
+- name: Check if rpm "{{ item.split('_')[0] }}" is already installed
+  yum:
+    list: "{{ item.split('_')[0] }}"
+  register: yum_list
+
+#- debug:
+#    msg: "{{ item.split('_')[0] }} Not installed"
+#  when: yum_list.results | selectattr('yumstate', 'match', 'installed') | list | length == 0
+
+- name: Ensure specified rpm "{{ item | replace('_','-') }}" is intalled
+  yum:
+    name: "{{ item | replace('_','-') }}"
+    state: present
+  when: >
+    ((yum_list.results | selectattr('yumstate', 'match', 'installed') | list | length != 0) or (force_rpm_install == "yes"))

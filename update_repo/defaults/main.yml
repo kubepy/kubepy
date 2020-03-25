@@ -1,0 +1,8 @@
+---
+# defaults file for update_repo
+yum_server_ip: 192.168.31.101
+yum_baseurl: "http://{{ yum_server_ip }}/yum/{{ repo_name }}"
+repo_name: "rhel-{{ ansible_distribution_major_version }}-server-rpms"
+repo_file: "{{ repo_name }}"
+repo_description: "{{ repo_name }}"
+repo_state: present

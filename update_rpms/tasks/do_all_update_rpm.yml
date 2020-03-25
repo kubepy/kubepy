@@ -1,0 +1,6 @@
+---
+# tasks file for update_rpms
+- name: Ensure all rpm package is latest
+  yum:
+    name: "{{ item }}"
+    state: latest

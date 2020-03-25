@@ -1,0 +1,11 @@
+---
+# tasks file for update_rpms
+- name: Ensure specified rpm package is installed/updated
+  include: do_update_rpm.yml
+  with_items: "{{ rpm_package }}"
+  when: '"*" not in rpm_package'
+
+- name: Ensure all rpm package is latest
+  include: do_all_update_rpm.yml
+  with_items: "{{ rpm_package }}"
+  when: '"*" in rpm_package'
